@@ -1,5 +1,5 @@
 
-#include <LowPower.h>           //Incluye la libreria de LowPower
+#include <LowPower.h>           
 #include <Simple_MPU6050.h>
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
@@ -25,7 +25,7 @@ void setup() {
  Serial.begin(9600);           //Velocidad del puerto
 // Serial.begin(115200);       //Velocidad del puerto
  pinMode(7, OUTPUT);           //enable modulo wisol
-   pinMode(5, OUTPUT);           //enable modulo wisol
+ pinMode(5, OUTPUT);           //enable modulo wisol
  serialgps.begin(9600);
 
   uint8_t val;
@@ -36,7 +36,7 @@ void setup() {
     Fastwire::setup(400,true);
   #endif
 
-//  while(!Serial);
+
   Serial.print(F("Inicio:"));
   #ifdef OFFSETS
   Serial.println(F("Usando Offsets predefinidos"));
@@ -79,22 +79,6 @@ void add_float(float var1)
     {
       bufer+=str1;    //si esta completo, se copia tal cual
     }
-  }
-}
-///////////////////////////////////Funcion add_int/////////////////////
-void add_int(int var2)    //funcion para agregar enteros al payload (hasta 255)
-{
-  byte* a2 = (byte*) &var2; //convertimos el dato a bytes
-  String str2;
-  str2=String(a2[0], HEX);  //convertimos el valor hex a string 
-  //verificamos si nuestro byte esta completo
-  if(str2.length()<2)
-  {
-    bufer+=0+str2;    //si no, se agrega un cero
-  }
-  else
-  {
-    bufer+=str2;     //si esta completo, se copia tal cual
   }
 }
 
